@@ -126,7 +126,7 @@ const CocktailGame = () => {
       <audio ref={deselectSoundRef} src={`${process.env.PUBLIC_URL}/deselect-sound.mp3`}></audio>
       {!gameStarted ? (
         <div className="welcome-screen" onClick={startGame}>
-          <h1>Press Click to Start</h1>
+          <h1>Click to Start</h1>
         </div>
       ) : (
         <>
