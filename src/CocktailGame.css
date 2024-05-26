@@ -44,8 +44,8 @@ body {
 }
 
 .ingredient {
-  width: 200px; /* Increased size */
-  height: 200px; /* Increased size */
+  width: 200px;
+  height: 200px;
   background-color: transparent;
   padding: 10px;
   text-align: center;
@@ -87,9 +87,9 @@ body {
   text-align: center;
   padding: 5px;
   position: absolute;
-  bottom: -20px; /* Position the name just below the image */
+  bottom: -20px;
   width: 100%;
-  font-size: 14px; /* Smaller font size */
+  font-size: 14px;
   transition: opacity 0.3s;
 }
 

@@ -52,10 +52,9 @@ const CocktailGame = () => {
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [message, setMessage] = useState('');
   const [currentRecipe, setCurrentRecipe] = useState('');
-  const [recipeIngredients, setRecipeIngredients] = useState([]);
+  const [score, setScore] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [score, setScore] = useState(0);
   const soundtrackRef = useRef(null);
   const selectSoundRef = useRef(null);
   const deselectSoundRef = useRef(null);
@@ -63,42 +62,31 @@ const CocktailGame = () => {
   useEffect(() => {
     const recipeName = getRandomRecipe();
     setCurrentRecipe(recipeName);
-    setRecipeIngredients(recipes[recipeName]);
   }, []);
 
   const startGame = () => {
     setGameStarted(true);
-    if (soundtrackRef.current) {
-      soundtrackRef.current.play().catch(error => {
-        console.log('Autoplay was prevented:', error);
-      });
-    }
+    soundtrackRef.current.play().catch(error => console.log('Autoplay was prevented:', error));
   };
 
   const handleIngredientClick = (ingredient) => {
     if (selectedIngredients.includes(ingredient.name)) {
       setSelectedIngredients(selectedIngredients.filter(item => item !== ingredient.name));
-      if (deselectSoundRef.current) {
-        deselectSoundRef.current.volume = 0.5; // Set volume to half
-        deselectSoundRef.current.play();
-      }
+      deselectSoundRef.current.volume = 0.5;
+      deselectSoundRef.current.play();
     } else if (selectedIngredients.length < 3) {
       setSelectedIngredients([...selectedIngredients, ingredient.name]);
-      if (selectSoundRef.current) {
-        selectSoundRef.current.volume = 0.5; // Set volume to half
-        selectSoundRef.current.play();
-      }
+      selectSoundRef.current.volume = 0.5;
+      selectSoundRef.current.play();
     }
   };
 
   const handleSubmit = () => {
-    if (JSON.stringify(selectedIngredients.sort()) === JSON.stringify(recipeIngredients.sort())) {
+    if (JSON.stringify(selectedIngredients.sort()) === JSON.stringify(recipes[currentRecipe].sort())) {
       setMessage(`Congratulations! You made a ${currentRecipe}!`);
       setScore(score + 1);
-      // Reset the game for the next round
       const newRecipe = getRandomRecipe();
       setCurrentRecipe(newRecipe);
-      setRecipeIngredients(recipes[newRecipe]);
       setSelectedIngredients([]);
     } else {
       setMessage(`Incorrect. Try again to make a ${currentRecipe}.`);
@@ -106,17 +94,10 @@ const CocktailGame = () => {
   };
 
   const toggleMute = () => {
-    const newMuteState = !isMuted;
-    setIsMuted(newMuteState);
-    if (soundtrackRef.current) {
-      soundtrackRef.current.muted = newMuteState;
-    }
-    if (selectSoundRef.current) {
-      selectSoundRef.current.muted = newMuteState;
-    }
-    if (deselectSoundRef.current) {
-      deselectSoundRef.current.muted = newMuteState;
-    }
+    setIsMuted(!isMuted);
+    soundtrackRef.current.muted = !isMuted;
+    selectSoundRef.current.muted = !isMuted;
+    deselectSoundRef.current.muted = !isMuted;
   };
 
   return (
@@ -126,7 +107,7 @@ const CocktailGame = () => {
       <audio ref={deselectSoundRef} src={`${process.env.PUBLIC_URL}/deselect-sound.mp3`}></audio>
       {!gameStarted ? (
         <div className="welcome-screen" onClick={startGame}>
-          <h1>Click to Start</h1>
+          <h1>Press Click to Start</h1>
         </div>
       ) : (
         <>
@@ -144,12 +125,8 @@ const CocktailGame = () => {
               </div>
             ))}
           </div>
-          <div className="text-center my-4">
-            <button className="btn btn-primary" onClick={handleSubmit}>
-              Submit
-            </button>
-            {message && <p className="mt-3">{message}</p>}
-          </div>
+          <button className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+          {message && <p className="mt-3">{message}</p>}
         </>
       )}
       <button className="mute-button" onClick={toggleMute}>
