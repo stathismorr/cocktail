@@ -2,31 +2,31 @@ import React, { useState, useEffect, useRef } from 'react';
 import './CocktailGame.css';
 
 const ingredients = [
-  { name: 'Vodka', image: '/images/vodka.webp' },
-  { name: 'Gin', image: '/images/gin.webp' },
-  { name: 'Rum', image: '/images/rum.webp' },
-  { name: 'Tequila', image: '/images/tequila.webp' },
-  { name: 'Triple Sec', image: '/images/triple_sec.webp' },
-  { name: 'Lime Juice', image: '/images/lime_juice.webp' },
-  { name: 'Cola', image: '/images/cola.webp' },
-  { name: 'Orange Juice', image: '/images/orange_juice.webp' },
-  { name: 'Cranberry Juice', image: '/images/cranberry_juice.webp' },
-  { name: 'Pineapple Juice', image: '/images/pineapple_juice.webp' },
-  { name: 'Grenadine', image: '/images/grenadine.webp' },
-  { name: 'Tonic Water', image: '/images/tonic_water.webp' },
-  { name: 'Soda Water', image: '/images/soda_water.webp' },
-  { name: 'Lemon Juice', image: '/images/lemon_juice.webp' },
-  { name: 'Sugar Syrup', image: '/images/sugar_syrup.webp' },
-  { name: 'Mint Leaves', image: '/images/mint_leaves.webp' },
-  { name: 'Tomato Juice', image: '/images/tomato_juice.webp' },
-  { name: 'Worcestershire Sauce', image: '/images/worcestershire_sauce.webp' },
-  { name: 'Hot Sauce', image: '/images/hot_sauce.webp' },
-  { name: 'Celery Salt', image: '/images/celery_salt.webp' },
-  { name: 'Black Pepper', image: '/images/black_pepper.webp' },
-  { name: 'Whiskey', image: '/images/whiskey.webp' },
-  { name: 'Vermouth', image: '/images/vermouth.webp' },
-  { name: 'Olive', image: '/images/olive.webp' },
-  { name: 'Angostura Bitters', image: '/images/angostura_bitters.webp' }
+  { name: 'Vodka', image: `${process.env.PUBLIC_URL}/images/vodka.webp` },
+  { name: 'Gin', image: `${process.env.PUBLIC_URL}/images/gin.webp` },
+  { name: 'Rum', image: `${process.env.PUBLIC_URL}/images/rum.webp` },
+  { name: 'Tequila', image: `${process.env.PUBLIC_URL}/images/tequila.webp` },
+  { name: 'Triple Sec', image: `${process.env.PUBLIC_URL}/images/triple_sec.webp` },
+  { name: 'Lime Juice', image: `${process.env.PUBLIC_URL}/images/lime_juice.webp` },
+  { name: 'Cola', image: `${process.env.PUBLIC_URL}/images/cola.webp` },
+  { name: 'Orange Juice', image: `${process.env.PUBLIC_URL}/images/orange_juice.webp` },
+  { name: 'Cranberry Juice', image: `${process.env.PUBLIC_URL}/images/cranberry_juice.webp` },
+  { name: 'Pineapple Juice', image: `${process.env.PUBLIC_URL}/images/pineapple_juice.webp` },
+  { name: 'Grenadine', image: `${process.env.PUBLIC_URL}/images/grenadine.webp` },
+  { name: 'Tonic Water', image: `${process.env.PUBLIC_URL}/images/tonic_water.webp` },
+  { name: 'Soda Water', image: `${process.env.PUBLIC_URL}/images/soda_water.webp` },
+  { name: 'Lemon Juice', image: `${process.env.PUBLIC_URL}/images/lemon_juice.webp` },
+  { name: 'Sugar Syrup', image: `${process.env.PUBLIC_URL}/images/sugar_syrup.webp` },
+  { name: 'Mint Leaves', image: `${process.env.PUBLIC_URL}/images/mint_leaves.webp` },
+  { name: 'Tomato Juice', image: `${process.env.PUBLIC_URL}/images/tomato_juice.webp` },
+  { name: 'Worcestershire Sauce', image: `${process.env.PUBLIC_URL}/images/worcestershire_sauce.webp` },
+  { name: 'Hot Sauce', image: `${process.env.PUBLIC_URL}/images/hot_sauce.webp` },
+  { name: 'Celery Salt', image: `${process.env.PUBLIC_URL}/images/celery_salt.webp` },
+  { name: 'Black Pepper', image: `${process.env.PUBLIC_URL}/images/black_pepper.webp` },
+  { name: 'Whiskey', image: `${process.env.PUBLIC_URL}/images/whiskey.webp` },
+  { name: 'Vermouth', image: `${process.env.PUBLIC_URL}/images/vermouth.webp` },
+  { name: 'Olive', image: `${process.env.PUBLIC_URL}/images/olive.webp` },
+  { name: 'Angostura Bitters', image: `${process.env.PUBLIC_URL}/images/angostura_bitters.webp` }
 ];
 
 const recipes = {
@@ -121,9 +121,9 @@ const CocktailGame = () => {
 
   return (
     <div className="container">
-      <audio ref={soundtrackRef} src="/soundtrack.mp3" loop></audio>
-      <audio ref={selectSoundRef} src="/select-sound.mp3"></audio>
-      <audio ref={deselectSoundRef} src="/deselect-sound.mp3"></audio>
+      <audio ref={soundtrackRef} src={`${process.env.PUBLIC_URL}/soundtrack.mp3`} loop></audio>
+      <audio ref={selectSoundRef} src={`${process.env.PUBLIC_URL}/select-sound.mp3`}></audio>
+      <audio ref={deselectSoundRef} src={`${process.env.PUBLIC_URL}/deselect-sound.mp3`}></audio>
       {!gameStarted ? (
         <div className="welcome-screen" onClick={startGame}>
           <h1>Press Click to Start</h1>
@@ -152,7 +152,7 @@ const CocktailGame = () => {
         </>
       )}
       <button className="mute-button" onClick={toggleMute}>
-        <img src={isMuted ? '/images/unmute.png' : '/images/mute.png'} alt="Mute/Unmute" />
+        <img src={isMuted ? `${process.env.PUBLIC_URL}/images/unmute.png` : `${process.env.PUBLIC_URL}/images/mute.png`} alt="Mute/Unmute" />
       </button>
     </div>
   );
