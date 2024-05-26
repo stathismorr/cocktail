@@ -126,7 +126,7 @@ const CocktailGame = () => {
       <audio ref={deselectSoundRef} src={`${process.env.PUBLIC_URL}/deselect-sound.mp3`}></audio>
       {!gameStarted ? (
         <div className="welcome-screen" onClick={startGame}>
-          <h1>Click to Start</h1>
+          <h1>Press Click to Start Booze</h1>
         </div>
       ) : (
         <>
@@ -140,6 +140,7 @@ const CocktailGame = () => {
                 onClick={() => handleIngredientClick(ingredient)}
               >
                 <img src={ingredient.image} alt={ingredient.name} className="ingredient-image" />
+                <div className="ingredient-name">{ingredient.name}</div>
               </div>
             ))}
           </div>

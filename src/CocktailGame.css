@@ -21,7 +21,6 @@ body {
   align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
-  position: relative;
 }
 
 .welcome-screen {
@@ -56,6 +55,7 @@ body {
   position: relative;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -73,6 +73,24 @@ body {
   box-shadow: 0 0 15px 5px rgba(240, 165, 0, 0.7);
   border: 2px solid #f0a500;
   background-color: rgba(240, 165, 0, 0.1);
+}
+
+.ingredient:hover .ingredient-name {
+  visibility: visible;
+  opacity: 1;
+}
+
+.ingredient-name {
+  visibility: hidden;
+  opacity: 0;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  position: absolute;
+  bottom: -20px; /* Position the name just below the image */
+  width: 100%;
+  font-size: 14px; /* Smaller font size */
+  transition: opacity 0.3s;
 }
 
 .btn-primary {
