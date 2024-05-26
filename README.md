@@ -44,9 +44,3 @@ Booze is a fun and interactive cocktail-making game. The player has to select th
 - **React**: JavaScript library for building the user interface.
 - **Bootstrap**: CSS framework for styling the interface.
 - **GitHub Pages**: Hosting platform for deploying the game.
-
-## Installation and Setup
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/your-repository-name.git
